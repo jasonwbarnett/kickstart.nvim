@@ -293,6 +293,9 @@ require('nvim-treesitter.configs').setup {
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+  
+  -- Ensure that everthing is installed before we exit, for container builds
+  sync_install = true,
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -492,10 +495,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
-if os.getenv("DOCKER_BUILD") then
-  vim.cmd("qa")
-end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
