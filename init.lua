@@ -201,6 +201,9 @@ vim.wo.number = true
 -- Disable mouse mode
 vim.o.mouse = ''
 
+-- Keep cursor centered
+vim.o.scrolloff = 40
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
