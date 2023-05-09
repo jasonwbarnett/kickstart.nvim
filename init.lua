@@ -82,6 +82,8 @@ require('lazy').setup({
   -- navigate like a boss
   'christoomey/vim-tmux-navigator',
 
+  'mihyaeru21/nvim-lspconfig-bundler',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -416,6 +418,9 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+-- Prepend `bundle exec` if solargraph is in Gemfile.lock
+require('lspconfig-bundler').setup()
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
