@@ -41,6 +41,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.tmux_navigator_no_mappings = 1
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -77,6 +78,9 @@ require('lazy').setup({
 
   -- remember last place in files
   'ethanholz/nvim-lastplace',
+
+  -- navigate like a boss
+  'christoomey/vim-tmux-navigator',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -395,7 +399,8 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- used for tmux like navigation
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -509,6 +514,22 @@ require'nvim-lastplace'.setup {
   lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
   lastplace_open_folds = true
 }
+
+-- Create splits easily
+vim.keymap.set('n', 'vv', '<C-w>v', { silent = true })
+vim.keymap.set('n', 'ss', '<C-w>s', { silent = true })
+
+-- Move between splits easily
+vim.keymap.set('n', '<c-h>', ':TmuxNavigateLeft<cr>', {silent = true})
+vim.keymap.set('n', '<c-j>', ':TmuxNavigateDown<cr>', {silent = true})
+vim.keymap.set('n', '<c-k>', ':TmuxNavigateUp<cr>', {silent = true})
+vim.keymap.set('n', '<c-l>', ':TmuxNavigateRight<cr>', {silent = true})
+
+-- Resize windows with arrow keys
+vim.keymap.set('n', '<C-Up>', '<C-w>+', { silent = true })
+vim.keymap.set('n', '<C-Down>', '<C-w>-', { silent = true })
+vim.keymap.set('n', '<C-Left>', '<C-w><', { silent = true })
+vim.keymap.set('n', '<C-Right>', '<C-w>>', { silent = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
