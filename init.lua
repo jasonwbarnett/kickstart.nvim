@@ -419,7 +419,10 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+
+
 -- Prepend `bundle exec` if solargraph is in Gemfile.lock
+local lspconfig = require('lspconfig')
 require('lspconfig-bundler').setup()
 
 -- Enable the following language servers
@@ -433,7 +436,7 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  
+
   solargraph = {},
 
   lua_ls = {
@@ -460,7 +463,7 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    lspconfig[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
