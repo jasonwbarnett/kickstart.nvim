@@ -74,7 +74,7 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-    
+
   -- remember last place in files
   'ethanholz/nvim-lastplace',
 
