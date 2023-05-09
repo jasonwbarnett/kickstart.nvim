@@ -423,7 +423,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   
-  ruby_ls = {},
+  solargraph = {},
 
   lua_ls = {
     Lua = {
