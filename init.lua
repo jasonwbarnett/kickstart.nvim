@@ -84,6 +84,21 @@ require('lazy').setup({
 
   'mihyaeru21/nvim-lspconfig-bundler',
 
+  -- languages
+  --- ruby
+  'ecomba/vim-ruby-refactoring',
+  'tpope/vim-rake',
+  'vim-ruby/vim-ruby',
+  'keith/rspec.vim',
+  'ck3g/vim-change-hash-syntax',
+  'tpope/vim-bundler',
+  --- Chef
+  'vadv/vim-chef',
+  --- golang
+  'fatih/vim-go',
+  --- powershell
+  'PProvost/vim-ps1',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
