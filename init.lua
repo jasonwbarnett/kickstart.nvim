@@ -84,6 +84,8 @@ require('lazy').setup({
 
   'mihyaeru21/nvim-lspconfig-bundler',
 
+  'axelf4/vim-strip-trailing-whitespace',
+
   -- languages
   --- ruby
   'ecomba/vim-ruby-refactoring',
