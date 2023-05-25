@@ -4,6 +4,7 @@ FROM centos:centos7 as build
 RUN yum update -y
 
 # Enable extra repos
+RUN curl -L https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo -o /etc/yum.repos.d/hashicorp.repo
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 RUN rpm -Uvh https://repo.ius.io/ius-release-el7.rpm
 RUN yum install -y centos-release-scl centos-release-scl-rh
@@ -44,6 +45,10 @@ RUN curl -L https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/do
     make install && \
     popd && \
     rm -rf zsh-5.9.tar.xz zsh-5.9
+
+# Install terraform stuff
+RUN yum install -y terraform-ls
+RUN curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
 # Install neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -121,7 +126,7 @@ RUN echo 'gem: --no-document' >> $HOME/.gemrc
 RUN gem install neovim
 
 # Install LSPs
-RUN nvim --headless "+LspInstall lua_ls solargraph gopls" +qa
+RUN nvim --headless "+LspInstall lua_ls solargraph terraformls gopls" +qa
 
 FROM scratch
 COPY --from=build / /
