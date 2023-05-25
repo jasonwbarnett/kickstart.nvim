@@ -135,5 +135,11 @@ USER jason.barnett
 WORKDIR /home/jason.barnett
 ENV HOME=/home/jason.barnett
 
+ENV PATH=/opt/rh/rh-python38/root/usr/local/bin:/opt/rh/rh-python38/root/usr/bin${PATH:+:${PATH}}
+ENV LD_LIBRARY_PATH=/opt/rh/rh-python38/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ENV MANPATH=/opt/rh/rh-python38/root/usr/share/man:$MANPATH
+ENV PKG_CONFIG_PATH=/opt/rh/rh-python38/root/usr/lib64/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}
+ENV XDG_DATA_DIRS="/opt/rh/rh-python38/root/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
 ENTRYPOINT ["/usr/local/bin/zsh"]
 CMD ["-l"]
