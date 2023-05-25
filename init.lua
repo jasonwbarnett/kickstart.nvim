@@ -277,7 +277,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
-  callback = vim.lsp.buf.format(),
+  callback = vim.lsp.buf.format,
 })
 
 -- [[ Highlight on yank ]]
@@ -463,7 +463,10 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  terraformls = {},
+  terraformls = {
+    filetypes = { "terraform", "terraform-vars", "tf" },
+  },
+  tflint = {},
 
   solargraph = {},
 
