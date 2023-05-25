@@ -106,12 +106,6 @@ RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/
 RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/gitignore -o $HOME/.gitignore
 RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/zsh/fasd.zsh -o $HOME/.oh-my-zsh/custom/fasd.zsh
 
-# Install nvim config
-RUN mkdir -p $HOME/.config
-COPY --chown=jason.barnett:jason.barnett --chmod=0644 init.lua $HOME/.config/nvim/init.lua
-COPY --chown=jason.barnett:jason.barnett --chmod=0755 lua $HOME/.config/nvim/lua
-RUN nvim --headless "+Lazy! sync" +qa
-
 # Install rustc, a Ruby 3.2 dependency
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH=$HOME/.cargo/bin${PATH:+:${PATH}}
@@ -126,8 +120,14 @@ RUN rbenv global $(rbenv install -l | grep -v -- - | grep '^3.2')
 RUN echo 'gem: --no-document' >> $HOME/.gemrc
 RUN gem install neovim
 
+# Install nvim config
+RUN mkdir -p $HOME/.config
+COPY --chown=jason.barnett:jason.barnett --chmod=0644 init.lua $HOME/.config/nvim/init.lua
+COPY --chown=jason.barnett:jason.barnett --chmod=0755 lua $HOME/.config/nvim/lua
+RUN nvim --headless "+Lazy! sync" +qa
+
 # Install LSPs
-RUN nvim --headless "+LspInstall lua_ls solargraph terraformls gopls" +qa
+RUN nvim --headless "+LspInstall lua_ls solargraph terraformls tflint gopls" +qa
 
 FROM scratch
 COPY --from=build / /
