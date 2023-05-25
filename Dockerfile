@@ -114,6 +114,7 @@ RUN nvim --headless "+Lazy! sync" +qa
 
 # Install rustc, a Ruby 3.2 dependency
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH=$HOME/.cargo/bin${PATH:+:${PATH}}
 
 # Install Ruby 3.1
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
@@ -136,6 +137,7 @@ WORKDIR /home/jason.barnett
 ENV HOME=/home/jason.barnett
 
 ENV PATH=/opt/rh/rh-python38/root/usr/local/bin:/opt/rh/rh-python38/root/usr/bin${PATH:+:${PATH}}
+ENV PATH=$HOME/.cargo/bin${PATH:+:${PATH}}
 ENV LD_LIBRARY_PATH=/opt/rh/rh-python38/root/usr/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ENV MANPATH=/opt/rh/rh-python38/root/usr/share/man:$MANPATH
 ENV PKG_CONFIG_PATH=/opt/rh/rh-python38/root/usr/lib64/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}
