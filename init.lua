@@ -42,8 +42,6 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.tmux_navigator_no_mappings = 1
-vim.g.terraform_fmt_on_save = 1
-vim.g.terraform_align = 1
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -102,8 +100,6 @@ require('lazy').setup({
   'fatih/vim-go',
   --- powershell
   'PProvost/vim-ps1',
-  --- terraform
-  'hashivim/vim-terraform',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -278,13 +274,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Terraform
-vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
-vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
-vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
-vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
-vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
