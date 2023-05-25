@@ -100,6 +100,8 @@ require('lazy').setup({
   'fatih/vim-go',
   --- powershell
   'PProvost/vim-ps1',
+  --- terraform
+  'hashivim/vim-terraform',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
