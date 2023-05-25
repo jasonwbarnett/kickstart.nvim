@@ -45,6 +45,13 @@ RUN curl -L https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/do
     popd && \
     rm -rf zsh-5.9.tar.xz zsh-5.9
 
+# Instal fd
+RUN curl -LO https://github.com/sharkdp/fd/releases/download/v8.7.0/fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz && \
+    tar zxf fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz && \
+    rm fd-v8.7.0-x86_64-unknown-linux-gnu.tar.gz && \
+    mv fd-v8.7.0-x86_64-unknown-linux-gnu /usr/local/bin/fd && \
+    chmod 0755 /usr/local/bin/fd
+
 # Install neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 RUN chmod u+x nvim.appimage
