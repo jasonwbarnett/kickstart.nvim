@@ -64,6 +64,17 @@ ENV XDG_DATA_DIRS="/opt/rh/rh-python38/root/usr/share:${XDG_DATA_DIRS:-/usr/loca
 RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 RUN pip3 install neovim
 
+# Install tmux
+RUN yum install -y libevent-devel ncurses-devel make bison pkg-config
+RUN curl -LO https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz && \
+    tar -zxf tmux-*.tar.gz && \
+    pushd tmux-*/ && \
+    ./configure && \
+    make && \
+    make install && \
+    popd && \
+    rm -rf  tmux-*
+
 # Install golang
 RUN yum install -y golang
 
@@ -128,6 +139,12 @@ RUN nvim --headless "+Lazy! sync" +qa
 
 # Install LSPs
 RUN nvim --headless "+LspInstall lua_ls solargraph terraformls tflint gopls" +qa
+
+# Download alacritty
+RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty-v0.12.1-portable.exe
+RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.info
+RUN mkdir -p ~/.config/alacritty && \
+    curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.yml -o ~/.config/alacritty/alacritty.yml
 
 FROM scratch
 COPY --from=build / /
