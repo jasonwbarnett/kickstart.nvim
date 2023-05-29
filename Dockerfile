@@ -146,6 +146,9 @@ RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/al
 RUN mkdir -p ~/.config/alacritty && \
     curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.yml -o ~/.config/alacritty/alacritty.yml
 
+# Download powerline fonts
+RUN git clone https://github.com/powerline/fonts.git --depth=1
+
 FROM scratch
 COPY --from=build / /
 
