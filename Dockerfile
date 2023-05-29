@@ -18,12 +18,13 @@ RUN yum install -y ack \
                    fasd \
                    git236 \
                    iputils \
-                   openssl11 \
-                   openssl11-devel \
                    make \
                    ncurses-devel \
+                   openssl11 \
+                   openssl11-devel \
                    ripgrep \
                    telnet \
+                   tmux \
                    unzip \
                    wget
 
@@ -97,9 +98,10 @@ COPY --chown=jason.barnett:jason.barnett --chmod=0644 .p10k.zsh $HOME/.p10k.zsh
 
 ## lay down custom configs
 RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/bash/aliases.sh -o $HOME/.oh-my-zsh/custom/aliases.zsh
-RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/gitconfig -o $HOME/.gitconfig
-RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/gitignore -o $HOME/.gitignore
-RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/zsh/fasd.zsh -o $HOME/.oh-my-zsh/custom/fasd.zsh
+RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/gitconfig   -o $HOME/.gitconfig
+RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/git/gitignore   -o $HOME/.gitignore
+RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/zsh/fasd.zsh    -o $HOME/.oh-my-zsh/custom/fasd.zsh
+RUN curl -L https://raw.githubusercontent.com/jasonwbarnett/dotfiles/master/tmux/tmux.conf  -o $HOME/.tmux.conf
 
 # Install rustc, a Ruby 3.2 dependency
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
