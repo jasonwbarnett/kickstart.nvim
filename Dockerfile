@@ -122,7 +122,7 @@ ENV PATH=$HOME/.cargo/bin${PATH:+:${PATH}}
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
 RUN echo 'eval "$($HOME/.rbenv/bin/rbenv init - bash)"' >> $HOME/.oh-my-zsh/custom/rbenv.zsh
 RUN git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
-ENV PATH /home/jason.barnett/.rbenv/shims:/home/jason.barnett/.rbenv/bin:$PATH
+ENV PATH $HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH
 RUN RUBY_CONFIGURE_OPTS='--with-openssl-dir=/usr/include/openssl11 --with-openssl-lib=/usr/lib64/openssl11 --with-openssl-include=/usr/include/openssl11' rbenv install $(rbenv install -l | grep -v -- - | grep '^3.0')
 RUN RUBY_CONFIGURE_OPTS='--with-openssl-dir=/usr/include/openssl11 --with-openssl-lib=/usr/lib64/openssl11 --with-openssl-include=/usr/include/openssl11' rbenv install $(rbenv install -l | grep -v -- - | grep '^3.1')
 RUN RUBY_CONFIGURE_OPTS='--with-openssl-dir=/usr/include/openssl11 --with-openssl-lib=/usr/lib64/openssl11 --with-openssl-include=/usr/include/openssl11' rbenv install $(rbenv install -l | grep -v -- - | grep '^3.2')
@@ -145,7 +145,8 @@ RUN nvim --headless "+LspInstall lua_ls solargraph terraformls tflint gopls" +qa
 # Download alacritty
 RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty-v0.12.1-portable.exe
 RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.info
-RUN curl -L https://github.com/alacritty/alacritty/releases/download/v0.12.1/_alacritty -o /home/jason.barnett/.oh-my-zsh/completions/_alacritty
+RUN mkdir -p $HOME/.oh-my-zsh/completions
+RUN curl -L https://github.com/alacritty/alacritty/releases/download/v0.12.1/_alacritty -o $HOME/.oh-my-zsh/completions/_alacritty
 RUN mkdir -p ~/.config/alacritty && \
     curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.yml -o ~/.config/alacritty/alacritty.yml
 
