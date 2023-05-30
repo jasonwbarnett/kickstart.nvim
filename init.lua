@@ -268,7 +268,11 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+if vim.env.TERM == "screen-256color" or vim.env.TERM == "xterm-256color" then
+  vim.o.termguicolors = false
+else
+  vim.o.termguicolors = true
+end
 
 -- [[ Basic Keymaps ]]
 
