@@ -280,6 +280,17 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Stolen from: https://github.com/skwp/dotfiles/blob/master/vim/settings/yadr-keymap-linux.vim
+-- Change inside various enclosures with Alt-" and Alt-'
+-- The f makes it find the enclosure so you don't have
+-- to be standing inside it
+vim.keymap.set('n', '<A-\'>', 'f\'ci\'', {noremap = true})
+vim.keymap.set('n', '<A-\">', 'f"ci"', {noremap = true})
+vim.keymap.set('n', '<A-(>', 'f(ci(', {noremap = true})
+vim.keymap.set('n', '<A-)>', 'f)ci)', {noremap = true})
+vim.keymap.set('n', '<A-[>', 'f[ci[', {noremap = true})
+vim.keymap.set('n', '<A-]>', 'f]ci]', {noremap = true})
+
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
