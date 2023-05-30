@@ -145,6 +145,7 @@ RUN nvim --headless "+LspInstall lua_ls solargraph terraformls tflint gopls" +qa
 # Download alacritty
 RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty-v0.12.1-portable.exe
 RUN curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.info
+RUN curl -L https://github.com/alacritty/alacritty/releases/download/v0.12.1/_alacritty -o /home/jason.barnett/.oh-my-zsh/completions/_alacritty
 RUN mkdir -p ~/.config/alacritty && \
     curl -LO https://github.com/alacritty/alacritty/releases/download/v0.12.1/alacritty.yml -o ~/.config/alacritty/alacritty.yml
 
